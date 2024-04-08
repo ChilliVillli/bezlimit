@@ -60,10 +60,10 @@ def reservetion(products):
             continue
 
 
-def main():
+def search():
 
     while flag:
-        cards = get_location(url='https://l.bezlimit.ru/store/480524?type=p&cubes=999333783')
+        cards = get_location(url='https://l.bezlimit.ru/store/480524?type=p&cubes=999333784')
         products = card_product(cards)
 
         if products == None:
@@ -72,6 +72,8 @@ def main():
             reservetion(products)
 
 
-if __name__ =='__main__':
-    main()
+search()
+
+# if __name__ =='__main__':
+#     main()
 
