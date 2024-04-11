@@ -6,7 +6,6 @@ from selenium.webdriver.common.by import By
 from fake_useragent import UserAgent
 
 
-
 ua = UserAgent()
 headers = {'User-agent': ua.random}
 flag = True
@@ -32,7 +31,7 @@ def get_location(url):
     time.sleep(5)
 
     try:
-        web_driver.clicken(By.XPATH, '/html/body/div[6]/div/div[2]/div/div[2]/div/div/div[2]/div/div/button').click()
+        web_driver.clicken(By.XPATH, '/html/body/div[5]/div/div[2]/div/div[2]/div/div/div[2]/div/div/button').click()
         time.sleep(2)
         card = BeautifulSoup(web_driver.driver.page_source, 'lxml').find('div', class_='ant-row ant-row-space-between').find_all('span', class_='bz-typography phone bz-typography-regular')
         # card = soup.find_all('span', class_='bz-typography phone bz-typography-regular')
@@ -51,7 +50,7 @@ def reservetion(products):
         if len(products) == 1:
             web_driver.clicken(By.XPATH, '//*[@id="root"]/div[2]/div/section/section/main/div[2]/div/div/div/div/div[2]/div/div/div/div/div/div[2]/div/div/div/div/div/div/div/div/div/span/div/button/span').click()
             time.sleep(2)
-            web_driver.clicken(By.XPATH, '/html/body/div[6]/div/div[2]/div/div[2]/div/div/div/form/div/div[5]/div/div/div/div/div/button/span').click()
+            web_driver.clicken(By.XPATH, '/html/body/div[6]/div/div[2]/div/div[2]/div/div/div/form/div/div[5]/div/div/div/div/div/button').click()
             time.sleep(2)
             web_driver.driver.close()
             web_driver.driver.quit()
@@ -60,20 +59,14 @@ def reservetion(products):
             continue
 
 
-def search():
+def search(digital_num):
 
     while flag:
-        cards = get_location(url='https://l.bezlimit.ru/store/480524?type=p&cubes=999333784')
+        cards = get_location(url=f'https://l.bezlimit.ru/store/480524?type=p&cubes={digital_num}')  # 999333784
         products = card_product(cards)
 
         if products == None:
             continue
+
         if products != None:
             reservetion(products)
-
-
-search()
-
-# if __name__ =='__main__':
-#     main()
-
